@@ -9,12 +9,12 @@
  int maxConsec = ...;
  int maxPresence = ...;
  int nNurses = ...;
- int M = 24; //Big Number
+ int hours = ...;
+ int M = hours; //Big Number
  
  range N = 1..nNurses;
- range H = 1..24;
+ range H = 1..hours;
  range C = 0..maxConsec;
- range P = 0..maxPresence-1;
  
  int demand[h in H] = ...;
  
@@ -44,16 +44,15 @@ forall(n in N)
   (sum(h in H) working[n,h]) <= maxHours * worksToday[n];
   
 // Constraint 4: All working nurses work at most maxConsec consecutive hours
-forall(n in N, h in H: h <= 24 - maxConsec)
+forall(n in N, h in H: h <= hours - maxConsec)
   (sum(c in C) working[n, h+c]) <= maxConsec;
   
 // Constraint 5: All working nurses should not stay longer than maxPresence
-//forall(n in N, h in H)
-//  (sum(p in P) working[n, h+p]) >= (sum(h2 in H) working[n, h2]) * Y[n,h];
-//
+forall(n in N)
+  (sum(h in H) worksAfter[n,h]) - (hours - sum(h in H) worksBefore[n,h]) <= maxPresence -2;
 
 // Constraint 6: No working nurse can rest for more than two consecutive hours
-forall(n in N, h in H: h < 24)
+forall(n in N, h in H: h < hours)
   working[n,h] + working[n,h+1] >= worksBefore[n,h] + worksAfter[n,h] - 1;
 
 // Constraint 6a/Helper: worksBefore is true if nurse worked before that hour
