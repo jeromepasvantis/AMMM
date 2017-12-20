@@ -1,8 +1,8 @@
 X = 10
-minHours = 5
-maxHours = 9
-maxConsec = 5
-maxPresence = 12
+minHours = 7
+maxHours = 12
+maxConsec = 7
+maxPresence = 14
 
 #TODO: minHours
 
@@ -22,7 +22,7 @@ def compute(candidate):
 
 	# Make it more expensive to use a "new" nurse
 	if not nurse.used:
-		cost += 2*X
+		cost += X
 
 	candidate[2] = cost
 

@@ -4,7 +4,7 @@
 		<config category="opl" default="true" name="Konfiguration 1">
 			<ref name="AMMMProject.mod" type="model">
 			</ref>
-			<ref name="AMMMProject.dat" type="data">
+			<ref name="Data2.dat" type="data">
 			</ref>
 		</config>
 	</configs>

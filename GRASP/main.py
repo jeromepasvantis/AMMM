@@ -9,7 +9,6 @@ class Nurse:
 		self.hours = []
 		self.working = 0
 		self.used = False
-
 	def __repr__(self):
 		return "Nurse {0}".format(self.number)
 
@@ -33,13 +32,17 @@ class Hour:
 nursesList = []
 hoursList = []
 sol = list([])
-
+"""
 minHours = 5
 maxHours = 9
 maxConsec = 5
 maxPresence = 14
-
-def construct(alpha=0.5):
+"""
+minHours = 7
+maxHours = 12
+maxConsec = 7
+maxPresence = 14
+def construct(alpha=0.2):
 	#initialize Candidate Set
 	C = []
 	
@@ -168,9 +171,10 @@ def local(solNurses, solHours, cost):
 	return None
 
 def main(argv=None):
-	nNurses = 20
+	nNurses = 30
 	nHours = 24
-	demand = [2,2,1,1,1,2,2,3,4,3,3,7,5,8,8,7,0,0,5,3,4,3,3,3]
+	demand = [2,2,1,1,1,2,2,8,9,9,5,7,5,8,8,7,10,10,5,3,4,3,3,3]
+	#[2,2,1,1,1,2,2,3,4,3,3,7,5,8,8,7,0,0,5,3,4,3,3,3]
 
 	#Create Nurses and Hours
 	for n in range(nNurses):
@@ -181,7 +185,7 @@ def main(argv=None):
 		h = Hour(n, demand[n])
 		hoursList.append(h)
 
-	cost = construct(0.7)
+	cost = construct(0.3)
 
 	print "Cost (Greedy): {0} ".format(cost)
 
