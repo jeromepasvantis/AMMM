@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 import BRKGA as brkga # BRKGA framework (problem independent)
 import decoder as decoder # Decoder algorithm (problem-dependent)
-import data # Input data (problem-dependent and instance-dependent)
+import dataset1 as data # Input data (problem-dependent and instance-dependent)
 from configuration import config  # Configuration parameters (problem-dependent and execution-dependent)
 
 # initializations
@@ -23,7 +23,7 @@ population=brkga.initializePopulation(numIndividuals,chrLength)
 
 i=0
 while (i<maxNumGen):
-    print i
+    #print i
     population = decoder.decode(population,data)
     evol.append(brkga.getBestFitness(population)['fitness'])
     if numElite>0:

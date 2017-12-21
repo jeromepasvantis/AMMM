@@ -1,5 +1,5 @@
 import numpy as np
-import data
+import dataset1 as data
 
 def getChromosomeLength(data):
     return data.nNurses
@@ -14,14 +14,14 @@ def decode(population, data):
 def decoder_assignment(data, chromosome):
     nurses = list([])
     demand = list(data.demand)
-    for i in chromosome:
-        print demand
+    for index, i in enumerate(chromosome):
+        
         if demandMet(demand):
             solution,fitness = generateSolution(nurses)
             return solution, fitness
         startHour = int(i)
         currentHour = startHour
-        nurse = Nurse(i)
+        nurse = Nurse(index)
         if startHour % 2 == 0:
             backwards = False
         else:

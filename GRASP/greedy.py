@@ -1,8 +1,10 @@
+import dataset1 as data
+
 X = 10
-minHours = 7
-maxHours = 12
-maxConsec = 7
-maxPresence = 14
+minHours = data.minHours
+maxHours = data.maxHours
+maxConsec = data.maxConsec
+maxPresence = data.maxPresence
 
 #TODO: minHours
 
