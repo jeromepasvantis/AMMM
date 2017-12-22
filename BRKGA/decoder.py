@@ -36,7 +36,7 @@ def decoder_assignment(data, chromosome):
             return solution, fitness
         startHour = int(i)
         currentHour = startHour
-        nurse = Nurse(index) x
+        nurse = Nurse(index) 
         if startHour % 2 == 0: # Sets working direction
             backwards = False
         else:
