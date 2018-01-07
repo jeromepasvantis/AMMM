@@ -1,6 +1,6 @@
 import math
 import numpy as np
-import dataset1 as data
+import data as data
 
 def initializePopulation(numIndividuals, chrLength):
     population=[]

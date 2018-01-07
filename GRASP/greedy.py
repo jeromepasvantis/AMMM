@@ -1,4 +1,4 @@
-import dataset1 as data
+import data as data
 
 X = 10
 minHours = data.minHours
@@ -6,11 +6,9 @@ maxHours = data.maxHours
 maxConsec = data.maxConsec
 maxPresence = data.maxPresence
 
-#TODO: minHours
-
 def compute(candidate):
 	cost = 0
-	
+
 	nurse = candidate[0]
 	hour = candidate[1]
 
@@ -37,9 +35,6 @@ def updateCandidates(candidateList, candidate):
 
 	# Update Greedy Cost
 	for c in candidateList:
-		compute(c)	
+		compute(c)
 
 	#print "y {0}".format(len(candidateList))
-
-
-	

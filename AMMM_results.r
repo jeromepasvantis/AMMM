@@ -106,13 +106,22 @@ ggplot(rtimeDF, aes(rtimeB)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 #------ BRKGA ------#
-elite <- c(.1,.25,.2,.1,.2,.25,.8,.4,.1)
-mutant <- c(.1,.3,.2,.2,.1,.1,.1,.4,.8)
+elite <-       c(.1,.25,.2,.1,.2,.25,.8,.4,.1)
+mutant <-      c(.1,.3,.2,.2,.1,.1,.1,.4,.8)
 Inheritance <- c(.5,.8,.6,.6,.8,.6,.9,.5,.1)
+paramComb <- 1:9
 
-brkgaresults <- c()
+brkgaresults <- c(69,70,70,68,68,69,78,75,76)
 plot(x = brkgaresults,xlab = "parameters",ylab = "solution", main ="BRKGA Parameter Comparison", col = 'blue')
 
+gDF <- data.frame(paramComb,brkgaresults)
+ggplot(gDF, aes(paramComb)) +
+  geom_line(aes(y=brkgaresults)) +
+  geom_point(aes(y=brkgaresults)) +
+  scale_x_continuous(breaks=paramComb) +
+  ylab("solution")+xlab("parameter combination")+
+  labs(title="BRKGA performance with varying parameters")+ 
+  theme(plot.title = element_text(hjust = 0.5))
 
 #------ GRASP ------#
 alpha <- c(0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1.0)

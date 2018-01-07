@@ -1,7 +1,7 @@
 import greedy
 import sys
 from random import randint
-import dataset1 as data
+import data as data
 
 class Nurse:
 	"""docstring for ClassName"""
@@ -44,7 +44,7 @@ maxPresence = data.maxPresence
 def construct(alpha=0.2):
 	#initialize Candidate Set
 	C = []
-	
+
 	for hour in hoursList:
 		for nurse in nursesList:
 			candidate = [nurse, hour, 0]
@@ -53,12 +53,12 @@ def construct(alpha=0.2):
 	tempRemoved = list([])
 
 	while len(C) > 0:
-		
+
 		C.sort(key= lambda x:x[2])
 
 		smin = C[0][2]
 		smax = C[-1][2]
-		
+
 		# Build RCL
 		threshold = smin + alpha * (smax - smin)
 
@@ -84,18 +84,18 @@ def construct(alpha=0.2):
 		Feasible = True
 		for h in hoursList:
 			if h.noNurses < h.demand: Feasible = False
-		
+
 		for n in nursesList:
-			if n.used: 
+			if n.used:
 				if n.working < minHours: Feasible = False
-				
-		if Feasible: 
+
+		if Feasible:
 			#Calculate Cost of Solution!
 			cost = 0
 			for nurse in nursesList:
-				if nurse.working > 0: 
+				if nurse.working > 0:
 					cost += 1
-			
+
 			return cost
 
 		# Remove unfeasible solutions
@@ -129,7 +129,7 @@ def construct(alpha=0.2):
 			# Remove candidates temporarily for consecBreak
 			tempNotFeasible = True
 			if not n.used:
-				tempNotFeasible = False 
+				tempNotFeasible = False
 			for index, hour in enumerate(n.hours):
 				if h.number in range(hour-2, hour+3):
 					tempNotFeasible = False
@@ -142,18 +142,18 @@ def construct(alpha=0.2):
 				newC.append(c)
 
 		C = newC
-	return None		
-	
+	return None
+
 
 def local(solNurses, solHours, cost):
 	global currentcost
 	global sol
 
 	for n in solNurses:
-		
+
 		hToCheck = list(n.hours)
 		Feasible = True
-	
+
 		for h in solHours:
 			if h[0] in hToCheck:
 				if h[1] - 1 < h[2]: Feasible = False
@@ -166,14 +166,14 @@ def local(solNurses, solHours, cost):
 				if h[0] in hToCheck:
 					h[1] -= 1
 			#print "{0} - {1}".format(len(newsolNurses), n)
-			if currentcost > len(newsolNurses): 
+			if currentcost > len(newsolNurses):
 				currentcost = len(newsolNurses)
 				newsol = list([])
 				for n in newsolNurses:
 					newsol.append([n.number, sorted(n.hours)])
 				sol = list(newsol)
 
-			local(newsolNurses, newsolHours, cost-1) 
+			local(newsolNurses, newsolHours, cost-1)
 
 	return None
 
@@ -185,7 +185,7 @@ def main(argv=None):
 	nNurses = data.nNurses
 	nHours = data.hours
 	demand = data.demand
-	maxitr = 10
+	maxitr = 20 # Set iterations here
 
 	for i in range(maxitr):
 		nursesList = list([])
@@ -200,8 +200,8 @@ def main(argv=None):
 			h = Hour(n, demand[n])
 			hoursList.append(h)
 
-		cost = construct(0.4)
-		if currentcost > cost: 
+		cost = construct(0.4) # Set alpha here
+		if currentcost > cost:
 			currentcost = cost
 			newsol = list([])
 			for n in nursesList:
@@ -220,14 +220,14 @@ def main(argv=None):
 		solHours = list([])
 		for h in hoursList:
 			solHours.append([h.number, h.noNurses, h.demand])
-	 	if sol: 
+	 	if sol:
 			local(solNurses, solHours, cost)
 
 		print currentcost
-	
+
 	print currentcost
 	for e in sol:
 		print e
 
 if __name__ == "__main__":
-    sys.exit(main())
+	sys.exit(main())

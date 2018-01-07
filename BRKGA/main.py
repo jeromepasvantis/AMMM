@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 import BRKGA as brkga # BRKGA framework (problem independent)
 import decoder as decoder # Decoder algorithm (problem-dependent)
-import dataset1 as data # Input data (problem-dependent and instance-dependent)
+import data as data # Input data (problem-dependent and instance-dependent)
 from configuration import config  # Configuration parameters (problem-dependent and execution-dependent)
 
 # initializations
@@ -18,14 +18,13 @@ evol=[]
 
 # Main body
 chrLength=decoder.getChromosomeLength(data)
-
 population=brkga.initializePopulation(numIndividuals,chrLength)
 
 i=0
 while (i<maxNumGen):
-    #print i
     population = decoder.decode(population,data)
     evol.append(brkga.getBestFitness(population)['fitness'])
+    print brkga.getBestFitness(population)['fitness']
     if numElite>0:
         elite, nonelite = brkga.classifyIndividuals(population,numElite)
     else:
@@ -40,10 +39,6 @@ while (i<maxNumGen):
 
 population = decoder.decode(population, data)
 bestIndividual = brkga.getBestFitness(population)
-#plt.plot(evol)
-#plt.xlabel('number of generations')
-#plt.ylabel('Fitness of best individual')
-#plt.axis([0, len(evol), 0, sum(data["cost"])+5])
-plt.show()
 
-print bestIndividual
+print bestIndividual['fitness']
+print population

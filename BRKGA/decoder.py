@@ -1,8 +1,10 @@
 import numpy as np
-import dataset1 as data
+import data as data
 
 '''
-Instructions for use - Simply update the 'import data' to the correct file and run
+Authors: Jerome Pasvantis and Kymry Burwell
+
+Instructions for use - Simply update the 'import data' to the correct file\dataset and run
 Dataset format is as follows:
 nNurses = 100
 hours =  24
@@ -25,9 +27,9 @@ def decode(population, data):
         ind['fitness']=fitness
     return(population)
 
-# Decoder - Adds hours to nurses and generates solution
+# Decoder - Adds hours to nurses and generates solution (adheres to all problem constraints)
 def decoder_assignment(data, chromosome):
-    nurses = list([]) # Create emply list for working nurses
+    nurses = list([]) # Create empty list for working nurses
     demand = list(data.demand)
     # Iterate through each gene in Chromosome until demand is met
     for index, i in enumerate(chromosome):
@@ -36,7 +38,7 @@ def decoder_assignment(data, chromosome):
             return solution, fitness
         startHour = int(i)
         currentHour = startHour
-        nurse = Nurse(index) 
+        nurse = Nurse(index)
         if startHour % 2 == 0: # Sets working direction
             backwards = False
         else:
@@ -45,7 +47,7 @@ def decoder_assignment(data, chromosome):
         maxPresence = data.maxPresence
         maxConsec = data.maxConsec
         consec = 0
-        #Adds hours to current nurse.
+        #Adds hours to current nurse - max hours, min hours, max consecutive, and max presence constraints ensured
         while maxPresence > 0 and sum(nurse.hours) < data.maxHours:
             maxPresence -=  1
             if consec < maxConsec:
@@ -66,7 +68,7 @@ def decoder_assignment(data, chromosome):
                 else: currentHour += 1
     return None, 99999
 
-# Check if demand is mets
+# Check if demand is met
 def demandMet(demand):
     met = True
     for i in demand:
@@ -74,7 +76,7 @@ def demandMet(demand):
             met = False
     return met
 
-# Generate Solution
+# Generate solution
 def generateSolution(nurses):
     fitness = len(nurses)
     solution = list([])

@@ -1,4 +1,7 @@
-
+/*********************************************
+ * Authors: Jerome Pasvantis and Kymry Burwell
+ *********************************************/
+ 
 # Set 1
 nNurses = 20
 hours =  24
@@ -7,7 +10,7 @@ minHours = 5
 maxHours = 9
 maxConsec = 3
 maxPresence = 14
-'''
+
 # Set 2
 nNurses = 60
 hours =  24
@@ -52,4 +55,3 @@ minHours = 4
 maxHours = 10
 maxConsec = 5
 maxPresence = 13
-'''
