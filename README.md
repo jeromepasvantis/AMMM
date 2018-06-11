@@ -1,8 +1,10 @@
 
-# Final project: Implementation of a given problem as a Integer Linear Program and in the metaheuristics GRASP and BRKGA
-## Algorithmic Methods for Mathematical Models / UPC Barcelona
+## Final project: 
+Implementation of an Optimization problem with Integer Linear Program(ILP) and the metaheuristics GRASP and BRKGA
 
-Kymry Burwell and Jerome Pasvantis
+Algorithmic Methods for Mathematical Models course at UPC Barcelona
+
+Authors: Kymry Burwell and Jerome Pasvantis
 
 * ILP Instructions:
 Step 1: Choose the desired data set. See AMMMdata.dat (includes more than one dataset).
